@@ -5,10 +5,37 @@ import (
 )
 
 func TestAdd(t *testing.T) {
-	got := Add(5, 4, 2, -10, 4.2, "l")
-	want := 1
+	t.Run("Should take any number of arguments and print out the sum. Ignore any non-integers", func(t *testing.T) {
+		sum := Add(5, 4, 2, -10, 4.2, "l", 32, 14)
 
-	if got != want {
-		t.Errorf("got %v, want %v", got, want)
-	}
+		got := formatNumber(sum)
+		want := "47"
+
+		if got != want {
+			t.Errorf("got %v, want %v", got, want)
+		}
+	})
+
+	t.Run("Should return number without commas", func(t *testing.T) {
+		sum := Add(9999)
+
+		got := formatNumber(sum)
+		want := "9999"
+
+		if got != want {
+			t.Errorf("got %v, want %v", got, want)
+		}
+	})
+
+	t.Run("Add should take any number of arguments and print out the sum. Ignore any non-integers", func(t *testing.T) {
+		sum := Add(5, 4, 2, -10, 4.2, "l", 9952, 8567292)
+
+		got := formatNumber(sum)
+		want := "8,577,245"
+
+		if got != want {
+			t.Errorf("got %v, want %v", got, want)
+		}
+	})
+
 }
