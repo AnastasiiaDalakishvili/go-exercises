@@ -1,16 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	result := Add(5, 4, 3, 2, -10)
+	result := Add(1, 2, 3, 4.2)
 	fmt.Println(result)
 }
 
-func Add(numbers ...int) int {
+func Add(numbers ...interface{}) interface{} {
 	sum := 0
 	for _, num := range numbers {
-		sum += num
+		if i, ok := num.(int); ok {
+			sum += i
+		}
 	}
 	return sum
 }
