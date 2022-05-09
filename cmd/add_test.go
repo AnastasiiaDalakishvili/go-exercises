@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-const TestFilePassTxt = "data/input1.txt"
-const TestFilePassCsv = "data/input2.csv"
+const TestFilePassTxt = "/Users/anastasiia.dalakishvili/github/saltpay/go-exercises/go-exercises/data/input1.txt"
+const TestFilePassCsv = "/Users/anastasiia.dalakishvili/github/saltpay/go-exercises/go-exercises/data/input2.csv"
 
 func TestAdd(t *testing.T) {
 	t.Run("Should take any number of arguments and print out the sum. Ignore any non-integers", func(t *testing.T) {
