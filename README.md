@@ -6,7 +6,7 @@ Anastasiia Golang Learning Project / exercise 1
 ## Run Locally
 To run the project locally:
 ```bash
- go run ./exercise1 ..
+ go run ./go-exercise ..
 ```
 
 
