@@ -3,10 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io"
 	"os"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -56,27 +56,31 @@ func formatNumber(num int) string {
 
 //Read the input file and return an array of numbers
 func getNumberFromFile(filePath string) []int {
-	file, err := os.Open(filePath)
+	numbersFromFile := []int{}
 
+	//read data from the file
+	data, err := os.ReadFile(filePath)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	fmt.Printf("my data %q", data)
 
-	var perline int
-	var nums []int
+	//convert into string
+	input := string(data)
+	fmt.Printf("my input %q", input)
 
-	for {
-		_, err := fmt.Fscanf(file, "%d\n", &perline) // give a patter to scan
+	//separate number by comma
+	str := strings.Split(input, "\n")
+	fmt.Printf("my replaced string %q", str)
 
+	//range through the numbers and append then to array of int
+	for _, i := range str {
+		j, err := strconv.Atoi(i)
 		if err != nil {
-			if err == io.EOF {
-				break // stop reading the file
-			}
-			fmt.Println(err)
-			os.Exit(1)
+			panic(err)
 		}
-		nums = append(nums, perline)
+		numbersFromFile = append(numbersFromFile, j)
 	}
-	return nums
+	return numbersFromFile
 }
