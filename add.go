@@ -4,10 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"path/filepath"
 	"regexp"
 	"strconv"
-	"strings"
 )
 
 func main() {
@@ -60,7 +58,7 @@ func getNumberFromFile(filePath string) []int {
 	numbersFromFile := []int{}
 
 	//get file extension
-	extension := filepath.Ext(filePath)
+	//extension := filepath.Ext(filePath)
 
 	//read data from the file
 	data, err := os.ReadFile(filePath)
@@ -74,13 +72,8 @@ func getNumberFromFile(filePath string) []int {
 
 	var str []string
 
-	if extension == ".txt" {
-		//separate number by comma
-		str = strings.Split(input, "\n")
-	} else if extension == ".csv" {
-		//separate number by comma
-		str = strings.Split(input, ",")
-	}
+	a := regexp.MustCompile(`(\s*(,|\n)\s*)`)
+	str = a.Split(input, -1)
 
 	//range through the numbers and append then to array of int
 	for _, i := range str {
@@ -93,3 +86,36 @@ func getNumberFromFile(filePath string) []int {
 
 	return numbersFromFile
 }
+
+//func csvFileReader(filePath string) []int {
+//	numbersFromFile := []int{}
+//
+//	f, err := os.Open(filePath)
+//
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	r := csv.NewReader(f)
+//
+//	for {
+//		record, err := r.Read()
+//		if err == io.EOF {
+//			break
+//		}
+//		if err != nil {
+//			log.Fatal(err)
+//		}
+//
+//		for _, i := range record {
+//			j, err := strconv.Atoi(i)
+//			if err != nil {
+//				panic(err)
+//			}
+//			numbersFromFile = append(numbersFromFile, j)
+//		}
+//
+//		return numbersFromFile
+//	}
+//	return numbersFromFile
+//}
