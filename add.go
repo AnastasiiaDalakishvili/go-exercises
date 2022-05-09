@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
@@ -58,21 +59,28 @@ func formatNumber(num int) string {
 func getNumberFromFile(filePath string) []int {
 	numbersFromFile := []int{}
 
+	//get file extension
+	extension := filepath.Ext(filePath)
+
 	//read data from the file
 	data, err := os.ReadFile(filePath)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Printf("my data %q", data)
 
-	//convert into string
+	//convert data into string
 	input := string(data)
-	fmt.Printf("my input %q", input)
 
-	//separate number by comma
-	str := strings.Split(input, "\n")
-	fmt.Printf("my replaced string %q", str)
+	var str []string
+
+	if extension == ".txt" {
+		//separate number by comma
+		str = strings.Split(input, "\n")
+	} else if extension == ".csv" {
+		//separate number by comma
+		str = strings.Split(input, ",")
+	}
 
 	//range through the numbers and append then to array of int
 	for _, i := range str {
@@ -82,5 +90,6 @@ func getNumberFromFile(filePath string) []int {
 		}
 		numbersFromFile = append(numbersFromFile, j)
 	}
+
 	return numbersFromFile
 }
