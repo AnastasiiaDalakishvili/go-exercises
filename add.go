@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"os"
@@ -8,10 +9,14 @@ import (
 	"strconv"
 )
 
-var filePath = "data/input.txt"
-
 func main() {
-	result := Add(filePath)
+	// Declare a string flag called file path with a default value ("input.txt") and a help message
+	fileName := flag.String("input-file", "", "specify file name")
+	flag.Parse()
+
+	path := *fileName
+
+	result := Add(path)
 	fmt.Println(formatNumber(result))
 }
 
