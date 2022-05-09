@@ -38,4 +38,15 @@ func TestAdd(t *testing.T) {
 		}
 	})
 
+	t.Run("If no arguments passed to the function it should read data from the file", func(t *testing.T) {
+		sum := Add()
+
+		got := formatNumber(sum)
+		want := "867,684"
+
+		if got != want {
+			t.Errorf("got %v, want %v", got, want)
+		}
+	})
+
 }
