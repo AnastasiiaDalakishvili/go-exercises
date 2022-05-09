@@ -8,13 +8,15 @@ import (
 	"strconv"
 )
 
+var filePath = "data/input.txt"
+
 func main() {
-	result := Add()
+	result := Add(filePath)
 	fmt.Println(formatNumber(result))
 }
 
 //Add calculates the sum of the numbers passed to it. If no data passed to the function then it reads it from the file
-func Add(numbersPassedtoFunction ...interface{}) int {
+func Add(filePath string, numbersPassedtoFunction ...interface{}) int {
 	sum := 0
 	if numbersPassedtoFunction != nil {
 		//calculate sum
@@ -24,7 +26,7 @@ func Add(numbersPassedtoFunction ...interface{}) int {
 			}
 		}
 	} else {
-		numbersFromFile := getNumberFromFile()
+		numbersFromFile := getNumberFromFile(filePath)
 		for _, num := range numbersFromFile {
 			sum += num
 		}
@@ -48,8 +50,8 @@ func formatNumber(num int) string {
 }
 
 //Read the input file and return an array of numbers
-func getNumberFromFile() []int {
-	file, err := os.Open("input.txt")
+func getNumberFromFile(filePath string) []int {
+	file, err := os.Open(filePath)
 
 	if err != nil {
 		fmt.Println(err)
@@ -71,6 +73,5 @@ func getNumberFromFile() []int {
 		}
 		nums = append(nums, perline)
 	}
-
 	return nums
 }
