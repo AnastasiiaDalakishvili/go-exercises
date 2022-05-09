@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
 	"regexp"
 	"strconv"
+
+	"github.com/AnastasiiaDalakishvili/go-exercise/adapters"
 )
 
 func main() {
@@ -30,7 +31,7 @@ func Add(filePath string, numbersPassedtoFunction ...interface{}) int {
 			}
 		}
 	} else {
-		numbersFromFile := getNumberFromFile(filePath)
+		numbersFromFile := adapters.GetNumberFromFile(filePath)
 		for _, num := range numbersFromFile {
 			sum += num
 		}
@@ -51,40 +52,6 @@ func formatNumber(num int) string {
 		return str
 	}
 	return strconv.Itoa(num)
-}
-
-//Read the input file and return an array of numbers
-func getNumberFromFile(filePath string) []int {
-	numbersFromFile := []int{}
-
-	//get file extension
-	//extension := filepath.Ext(filePath)
-
-	//read data from the file
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	//convert data into string
-	input := string(data)
-
-	var str []string
-
-	a := regexp.MustCompile(`(\s*(,|\n)\s*)`)
-	str = a.Split(input, -1)
-
-	//range through the numbers and append then to array of int
-	for _, i := range str {
-		j, err := strconv.Atoi(i)
-		if err != nil {
-			panic(err)
-		}
-		numbersFromFile = append(numbersFromFile, j)
-	}
-
-	return numbersFromFile
 }
 
 //func csvFileReader(filePath string) []int {
