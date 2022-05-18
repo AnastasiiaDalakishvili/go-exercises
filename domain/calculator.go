@@ -2,7 +2,7 @@ package domain
 
 import "github.com/AnastasiiaDalakishvili/go-exercise/adapters"
 
-func Add(filePath []string, numbersPassedtoFunction ...interface{}) int {
+func Add(numbersPassedtoFunction ...interface{}) int {
 	sum := 0
 	if numbersPassedtoFunction != nil {
 		//calculate sum
@@ -12,7 +12,7 @@ func Add(filePath []string, numbersPassedtoFunction ...interface{}) int {
 			}
 		}
 	} else {
-		numbersFromFile := adapters.GetNumberFromFile(filePath)
+		numbersFromFile := adapters.GetNumberFromFile()
 		for _, num := range numbersFromFile {
 			sum += num
 		}
