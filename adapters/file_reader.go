@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/AnastasiiaDalakishvili/go-exercise/helpers"
 )
 
 type arrayOfFlags []string
@@ -20,7 +22,7 @@ func (f *arrayOfFlags) Set(flag string) error {
 
 var inputFile arrayOfFlags
 
-//Read the input file and return a string
+//Read the input file and return an array of numbers
 func GetNumberFromFile() []int {
 
 	flag.Var(&inputFile, "input-file", "specify file name")
@@ -43,7 +45,7 @@ func GetNumberFromFile() []int {
 		arrayOfInputs = append(arrayOfInputs, input)
 	}
 
-	numbersFromFile = DataConverter(strings.Join(arrayOfInputs[:], ","))
+	numbersFromFile = helpers.DataConverter(strings.Join(arrayOfInputs[:], ","))
 
 	return numbersFromFile
 }
