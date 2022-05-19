@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/AnastasiiaDalakishvili/go-exercise/adapters"
 	"github.com/AnastasiiaDalakishvili/go-exercise/domain"
 )
@@ -16,5 +18,5 @@ func main() {
 	formattedSum := domain.FormatNumber(sum)
 
 	//print sum
-	adapters.Printer(formattedSum)
+	adapters.Printer(os.Stdout, formattedSum)
 }
