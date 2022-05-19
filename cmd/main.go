@@ -7,7 +7,7 @@ import (
 
 func main() {
 	//extract the numbers pass by user either from the file or just an array of integers
-	numbers := adapters.GetNumberFromFile()
+	numbers := adapters.GetDataFromCLI()
 
 	//pass this numbers ro calculator and get the sum
 	sum := domain.Add(numbers)
