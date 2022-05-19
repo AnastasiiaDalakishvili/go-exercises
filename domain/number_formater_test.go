@@ -4,9 +4,6 @@ import (
 	"testing"
 )
 
-const TestFilePassTxt = "/Users/anastasiia.dalakishvili/github/saltpay/go-exercises/go-exercises/data/input1.txt"
-const TestFilePassCsv = "/Users/anastasiia.dalakishvili/github/saltpay/go-exercises/go-exercises/data/input2.csv"
-
 func TestFormatNumber(t *testing.T) {
 	t.Run("Should return number without commas", func(t *testing.T) {
 		number := 9999
