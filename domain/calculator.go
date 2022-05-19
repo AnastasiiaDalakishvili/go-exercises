@@ -7,19 +7,3 @@ func Add(numbers []int) int {
 	}
 	return sum
 }
-
-//sum := 0
-//if numbersPassedtoFunction != nil {
-////calculate sum
-//for _, num := range numbersPassedtoFunction {
-//if i, ok := num.(int); ok {
-//sum += i
-//}
-//}
-//} else {
-//numbersFromFile := adapters.GetNumberFromFile()
-//for _, num := range numbersFromFile {
-//sum += num
-//}
-//}
-//return sum

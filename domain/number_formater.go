@@ -7,6 +7,7 @@ import (
 )
 
 //this function formats the number to thousands separated by comma
+
 func FormatNumber(num int) string {
 	if num > 9999 {
 		str := fmt.Sprintf("%d", num)
